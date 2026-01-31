@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ BESTIE PROTOCOL: EXTREME JOY ✨</title>
+    <style>
+        :root {
+            --accent-pink: #ff85a2;
+            --soft-purple: #f1e4ff;
+            --neon-blue: #00d4ff;
+            --glass: rgba(255, 255, 255, 0.15);
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            width: 100%; height: 100%;
+            background-color: #0a0a0a;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+            transition: background 1.5s ease;
+        }
+
+        .container {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .active { display: flex; }
+
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            padding: 30px;
+            border-radius: 25px;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            max-width: 85%;
+            margin: 20px;
+        }
+
+        .btn {
+            background: white; color: black; border: none;
+            padding: 15px 35px; border-radius: 50px;
+            font-weight: bold; cursor: pointer; margin: 10px;
+            transition: 0.3s; font-size: 1rem;
+            z-index: 10;
+        }
+
+        .btn:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 8px 20px rgba(255, 133, 162, 0.5); }
+
+        /* --- PHOTO GALLERY --- */
+        .gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 20px; }
+        .photo-frame {
+            background: white; padding: 10px 10px 35px 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            max-width: 180px; transition: 0.4s;
+        }
+        .photo-frame img { width: 100%; height: 180px; object-fit: cover; }
+        .photo-frame p { color: #444; font-family: 'Brush Script MT', cursive; margin: 10px 0 0 0; font-size: 1.2rem; }
+        .tilt-left { transform: rotate(-5deg); }
+        .tilt-right { transform: rotate(5deg); }
+
+        /* --- CINEMATIC LETTER --- */
+        #letter-container {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        #scrolling-letter {
+            position: absolute;
+            width: 100%;
+            bottom: -100%;
+            animation: scrollUp 25s linear forwards;
+            line-height: 2;
+            font-size: 1.2rem;
+            color: var(--soft-purple);
+            text-shadow: 0 0 10px var(--accent-pink);
+        }
+
+        @keyframes scrollUp {
+            0% { bottom: -120%; }
+            100% { bottom: 100%; }
+        }
+
+        .glitch-title {
+            font-size: 3rem;
+            background: linear-gradient(to right, #ff85a2, #baedff, #ff85a2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: gradientMove 3s linear infinite;
+        }
+
+        @keyframes gradientMove { to { background-position: 200% center; } }
+
+        /* --- PARTICLES & CONFETTI --- */
+        .particle {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(720deg); }
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) scale(0); opacity: 0; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="page1" class="container active">
+        <h2 style="color: var(--accent-pink); letter-spacing: 5px;">⚠️ VIBE CHECK ⚠️</h2>
+        <p>Your device has been flagged for <b>Excessive Main-Character Energy</b>.</p>
+        <button class="btn" onclick="showPage(2)">Accept Destiny</button>
+    </div>
+
+    <div id="page2" class="container">
+        <div class="glass-card">
+            <h3>Quick Verification 💅</h3>
+            <p>Are you the most iconic person in this room?</p>
+            <button class="btn" onclick="showPage(3)">Duh.</button>
+            <button class="btn" onmouseover="moveBtn(this)">No, I'm shy</button>
+        </div>
+    </div>
+
+    <div id="page3" class="container">
+        <h2 id="load-text">Calibrating Sparkles...</h2>
+        <div style="width: 200px; height: 6px; background: #333; border-radius: 10px; margin: 20px;">
+            <div id="bar" style="width: 0%; height: 100%; background: var(--accent-pink); border-radius: 10px;"></div>
+        </div>
+    </div>
+
+    <div id="page4" class="container">
+        <h1 class="glitch-title">HAPPY BIRTHDAY!</h1>
+        <p>100% Iconic. 100% Legendary.</p>
+        <div class="gallery">
+            <div class="photo-frame tilt-left">
+                <img src="pic1.jpg" alt="Photo 1">
+                <p>The Moment ✨</p>
+            </div>
+            <div class="photo-frame tilt-right">
+                <img src="pic2.jpg" alt="Photo 2">
+                <p>Our Vibe 💖</p>
+            </div>
+        </div>
+        <button class="btn" onclick="showPage(5)" style="margin-top: 30px;">OPEN THE JOY VAULT →</button>
+    </div>
+
+    <div id="page5" class="container">
+        <div class="glass-card" style="width: 90%;">
+            <h2 style="color: var(--neon-blue);">💌 A Message For You</h2>
+            
+            <div id="letter-container">
+                <div id="scrolling-letter">
+                    <p>To my favorite human,</p>
+                    <p>Happy Birthday! 🎂</p>
+                    <p>I wanted to remind you that</p>
+                    <p>you are absolutely incredible.</p>
+                    <p>You make every day brighter</p>
+                    <p>just by being yourself.</p>
+                    <p>Keep shining, keep smiling,</p>
+                    <p>and never stop being iconic.</p>
+                    <p>The world is yours today!</p>
+                    <p>✨✨✨</p>
+                    <p>Love always,</p>
+                    <p>Your Bestie 💖</p>
+                </div>
+            </div>
+
+            <button class="btn" onclick="triggerConfetti(50)" style="background: var(--accent-pink); color: white;">More Confetti! 🎉</button>
+            <p id="compliment" style="margin-top: 15px; font-style: italic; min-height: 1.5em;"></p>
+        </div>
+        <button class="btn" style="background:transparent; color:white; border: 1px solid white;" onclick="showPage(4)">Back to Photos</button>
+    </div>
+
+    <script>
+        function showPage(num) {
+            document.querySelectorAll('.container').forEach(c => c.classList.remove('active'));
+            document.getElementById('page' + num).classList.add('active');
+            
+            if(num === 3) startLoading();
+            if(num === 4) {
+                document.body.style.background = "radial-gradient(circle, #2d0036 0%, #000000 100%)";
+                startHearts();
+            }
+            if(num === 5) {
+                triggerConfetti(100); // Automatic rain when letter opens
+                resetLetter();
+            }
+        }
+
+        function moveBtn(btn) {
+            btn.style.position = 'absolute';
+            btn.style.left = Math.random() * 80 + '%';
+            btn.style.top = Math.random() * 80 + '%';
+        }
+
+        function startLoading() {
+            let width = 0;
+            let bar = document.getElementById('bar');
+            let int = setInterval(() => {
+                width++;
+                bar.style.width = width + '%';
+                if(width >= 100) { clearInterval(int); showPage(4); }
+            }, 40);
+        }
+
+        function startHearts() {
+            setInterval(() => {
+                const h = document.createElement('div');
+                h.className = 'particle';
+                h.innerHTML = ['💖','✨','🌸','🎈'][Math.floor(Math.random()*4)];
+                h.style.left = Math.random() * 100 + 'vw';
+                h.style.top = '110vh';
+                h.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                h.style.animation = `floatUp ${(Math.random()*3 + 3)}s linear forwards`;
+                document.body.appendChild(h);
+                setTimeout(() => h.remove(), 5000);
+            }, 400);
+        }
+
+        function triggerConfetti(amount) {
+            const colors = ['#ff85a2', '#ffeb3b', '#00f2ff', '#ffffff'];
+            for(let i=0; i<amount; i++) {
+                const c = document.createElement('div');
+                c.className = 'particle';
+                c.style.width = '10px';
+                c.style.height = '10px';
+                c.style.background = colors[Math.floor(Math.random()*colors.length)];
+                c.style.left = Math.random() * 100 + 'vw';
+                c.style.top = '-10px';
+                c.style.borderRadius = '50%';
+                c.style.animation = `fall ${(Math.random()*2 + 2)}s linear forwards`;
+                document.body.appendChild(c);
+                setTimeout(() => c.remove(), 3000);
+            }
+            // Also update the compliment while we're at it!
+            newCompliment();
+        }
+
+        function resetLetter() {
+            const letter = document.getElementById('scrolling-letter');
+            letter.style.animation = 'none';
+            letter.offsetHeight; 
+            letter.style.animation = 'scrollUp 25s linear forwards';
+        }
+
+        function newCompliment() {
+            const list = [
+                "You’re the human version of a 10/10 playlist. 🎶",
+                "The world is 10x better because you're in it. 🌍",
+                "CEO of being amazing. 👑",
+                "You are the main character! ✨",
+                "If being cute was a crime, you'd be in for life! 🚔"
+            ];
+            document.getElementById('compliment').innerText = list[Math.floor(Math.random() * list.length)];
+        }
+    </script>
+</body>
+</html>
